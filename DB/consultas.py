@@ -86,6 +86,20 @@ def insert_producto(data):
 #        consult'S all 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
+def select_producto():
+    conn = create_conection()
+    sql = """SELECT n_socio,n_tri,n_cor,fecha FROM product"""
+    try:
+        cur= conn.cursor()
+        cur.execute(sql)
+        product = cur.fetchall()
+        return product
+    except Error as e:
+        print(f"error al buscar all {e}")
+    
+    finally:
+        if conn:
+            conn.close()
 
 
 
