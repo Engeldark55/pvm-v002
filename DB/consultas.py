@@ -100,7 +100,19 @@ def select_producto():
     finally:
         if conn:
             conn.close()
-
+def select_gasto():
+    conn = create_conection()
+    sql= """SELECT name,cost,description,fecha FROM Expenses"""
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        gastos = cur.fetchall()
+        return gastos
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
 
 
 
