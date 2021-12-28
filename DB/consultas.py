@@ -75,7 +75,7 @@ def insert_producto(data):
 
 def insert_cuenta(data):
     conn = create_conection()
-    sql = """INSERT INTO Account(name,abono,fecha)VALUES(?, ?, ?)"""
+    sql = """INSERT INTO Account(name_client,deuda_actual,fecha)VALUES(?, ?, ?)"""
     try:
         conn.execute(sql,data)
         conn.commit()
@@ -140,6 +140,19 @@ def select_shop():
         if conn:
             conn.close()
 
+def select_cuentas():
+    conn = create_conection()
+    sql= """SELECT name_client,deuda_actual,abono,fecha FROM Account"""
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        gastos = cur.fetchall()
+        return gastos
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
 
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*

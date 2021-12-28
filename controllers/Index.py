@@ -30,6 +30,11 @@ class Index(QWidget,Ui_Form_Main):
 
         self.btn_save.clicked.connect(self.insert_shop)
         self.btn_actualizar.clicked.connect(lambda: self.table(select_shop()))
+        
+
+             
+    
+        
     #-----------------------------------
     #        funtionss open windows
     #-----------------------------------
@@ -68,8 +73,10 @@ class Index(QWidget,Ui_Form_Main):
         precio = self.line_precio.text()
         producto = self.comboBox_Producto.currentText()
 
+   
         multi = int(kg_pz) * int(precio)
         Total  = multi
+        self.label_Total.setText(str(Total))
 
         pago = self.line_recivo.text()
 
@@ -81,7 +88,11 @@ class Index(QWidget,Ui_Form_Main):
         if insert_venta(data):
             self.clear_line_shop()
             print("venta Realizado en window")
-    #-----------------------------------
+
+            if int(resta) != 0:
+                data_client = (cliente,acuenta,fecha)
+                insert_cuenta(data_client)
+         
     #        funtionss clear
     #-----------------------------------
     def clear_line_shop(self):
@@ -104,4 +115,4 @@ class Index(QWidget,Ui_Form_Main):
         for(index_row,row) in enumerate(data):
             for(index_cell,cell) in enumerate(row):
                 self.tableWidget.setItem(index_row,index_cell,QTableWidgetItem(str(cell)))
-
+    
