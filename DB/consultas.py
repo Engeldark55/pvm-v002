@@ -90,7 +90,20 @@ def insert_cuenta(data):
 #        UPDATE'S 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-
+def update_acconut(data):
+    conn = create_conection()
+    sql  = """UPDATE Account set deuda_actual= ?, fecha = ? WHERE name_client = ?"""
+    
+    try:
+        conn.cursor()
+        conn.execute(sql,data)
+        conn.commit()
+        print("[+]update db - ok")
+    except Error as e:
+        print(f"the update is error is .....{e}")
+    finally:
+        if conn:
+            conn.close()
 
 
 
@@ -142,7 +155,7 @@ def select_shop():
 
 def select_cuentas():
     conn = create_conection()
-    sql= """SELECT name_client,deuda_actual,abono,fecha FROM Account"""
+    sql= """SELECT name_client,deuda_actual,fecha FROM Account"""
     try:
         cur = conn.cursor()
         cur.execute(sql)
@@ -158,3 +171,37 @@ def select_cuentas():
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 #        consult'S One 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+def select_one_cuentao_for_name(data):
+    conn = create_conection()
+    sql = """SELECT deuda_actual FROM Account WHERE name_client= ? """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql,data)
+        client_deuda = cur.fetchall()
+        return client_deuda
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+
+
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+#       delete 
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+def delete_cuenta_cuenta():
+    conn = create_conection()
+    sql = """DELETE FROM Account WHERE deuda_actual = 0"""
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        gastos = cur.fetchall()
+        return gastos
+    except Error as e:
+        print(f"error eliminar cuenta... {e}")
+    finally:
+        if conn:
+            conn.close()
