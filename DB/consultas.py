@@ -172,14 +172,15 @@ def select_cuentas():
 #        consult'S One 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-def select_one_cuentao_for_name(data):
+def select_one_account_name(name):
     conn = create_conection()
-    sql = """SELECT deuda_actual FROM Account WHERE name_client= ? """
+    sql = f"""SELECT deuda_actual FROM Account WHERE name_client= '{name}' """
     try:
         cur = conn.cursor()
-        cur.execute(sql,data)
-        client_deuda = cur.fetchall()
+        cur.execute(sql)
+        client_deuda = cur.fetchone()
         return client_deuda
+
     except Error as e:
         print(f"error al buscar gastos... {e}")
     finally:
@@ -192,16 +193,19 @@ def select_one_cuentao_for_name(data):
 #       delete 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-def delete_cuenta_cuenta():
+def delete_account():
     conn = create_conection()
-    sql = """DELETE FROM Account WHERE deuda_actual = 0"""
+    sql = f"""DELETE FROM Account WHERE deuda_actual <= 0"""
     try:
-        cur = conn.cursor()
-        cur.execute(sql)
-        gastos = cur.fetchall()
-        return gastos
+        conn.cursor()
+        conn.execute(sql)
+        conn.commit()
+
     except Error as e:
         print(f"error eliminar cuenta... {e}")
     finally:
         if conn:
             conn.close()
+
+
+

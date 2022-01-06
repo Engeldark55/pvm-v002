@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/moren/OneDrive/Escritorio/PVM-v0001/db/db_PVM.db" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1935"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT deuda_actual FROM Account WHERE name_client =&quot;fulanito&quot;
+
+INSERT INTO Account(name_client,deuda_actual,fecha) VALUES(&quot;pepito&quot;,500,&quot;12/12/12&quot;)
+
+DELETE FROM Account WHERE deuda_actual = 0
+
+UPDATE Account set deuda_actual=0 WHERE name_client =&quot;pepito&quot;
+
+SELECT * FROM Account</sql><current_tab id="0"/></tab_sql></sqlb_project>

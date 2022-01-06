@@ -1,8 +1,11 @@
 from PySide2.QtWidgets import QWidget,QTableWidgetItem
 from db.consultas import insert_venta
 from view.Main import Ui_Form_Main
+
+#db
 from db.consultas import insert_cuenta
 from db.consultas import select_shop
+from db.consultas import select_one_account_name,update_acconut
 
 import datetime
 
@@ -30,11 +33,16 @@ class Index(QWidget,Ui_Form_Main):
 
         self.btn_save.clicked.connect(self.insert_shop)
         self.btn_actualizar.clicked.connect(lambda: self.table(select_shop()))
+    #-----------------------------------
+    #        seleccion de producto (calculo)
+    #-----------------------------------
+        self.comboBox_Producto.currentIndexChanged.connect(self.selecion_producto)
+        
+        #funcion de cliente de-uda
+     
         
 
-             
     
-        
     #-----------------------------------
     #        funtionss open windows
     #-----------------------------------
@@ -53,9 +61,11 @@ class Index(QWidget,Ui_Form_Main):
         from controllers.Cuentas import Cuenta
         windo_cuenta = Cuenta(self)
         windo_cuenta.show()
+    #-----------------------------------
+    #        funtionss cliente_cuenta
 
     #-----------------------------------
-    #        funtionss insert shop
+    #        funtionss seleccion de producto (cuent)
     #-----------------------------------
     #OPtion the PRODUCT
     def opc_busqueda(self):
@@ -66,6 +76,22 @@ class Index(QWidget,Ui_Form_Main):
         opc = (" ","Tripa","Corazon")
         self.comboBox_Producto.addItems(opc)
     
+    def selecion_producto(self):
+       
+        seleccion = self.comboBox_Producto.itemText(self.comboBox_Producto.currentIndex())
+
+        if seleccion == "Tripa" or seleccion == "Corazon":
+          
+            producto_select = self.line_kg_pz.text()
+            precio_product = self.line_precio.text()
+            calculo = int(producto_select) * int(precio_product)
+            total_label = calculo
+
+            self.label_Total.setText(str(total_label))
+       
+    #-----------------------------------
+    #        funtionss insert shop
+    #-----------------------------------
     def insert_shop(self):
         
         cliente = self.line_nombre_cliente.text()
@@ -76,23 +102,42 @@ class Index(QWidget,Ui_Form_Main):
    
         multi = int(kg_pz) * int(precio)
         Total  = multi
-        self.label_Total.setText(str(Total))
+        #self.label_Total.setText(str(Total))
 
         pago = self.line_recivo.text()
 
         resta = int(Total) - int(pago) 
         acuenta = resta
+        
+
+        self.label_Acuenta.setText(str(acuenta))
+
         fecha =datetime.datetime.now()
 
         data = (cliente,kg_pz,precio,producto,Total,pago,acuenta,fecha)
-        if insert_venta(data):
-            self.clear_line_shop()
-            print("venta Realizado en window")
+        
 
-            if int(resta) != 0:
-                data_client = (cliente,acuenta,fecha)
-                insert_cuenta(data_client)
-         
+        busca_cliente=select_one_account_name(cliente)
+        if busca_cliente:
+            self.label_deuda_anterior.setText(str(busca_cliente))
+            suma= int(busca_cliente[0]) + acuenta 
+            data_update=(suma,fecha,cliente)
+            update_acconut(data_update)
+            self.label_Acuenta.setText(str(suma))
+            data_2=(cliente,kg_pz,precio,producto,Total,pago,suma,fecha)
+            insert_venta(data_2)
+            self.clear_line_shop()
+        else:
+            if insert_venta(data):
+                self.clear_line_shop()
+                print("venta Realizado en window")
+                self.label_deuda_anterior.setText(str(acuenta))
+
+                if int(resta) != 0:
+                    data_client = (cliente,acuenta,fecha)
+                    insert_cuenta(data_client)
+            
+    
     #        funtionss clear
     #-----------------------------------
     def clear_line_shop(self):
