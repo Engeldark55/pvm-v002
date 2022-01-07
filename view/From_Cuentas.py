@@ -17,8 +17,10 @@ class Ui_From_Cuentas(object):
     def setupUi(self, From_Cuentas):
         if not From_Cuentas.objectName():
             From_Cuentas.setObjectName(u"From_Cuentas")
-        From_Cuentas.resize(701, 319)
-        From_Cuentas.setStyleSheet(u"background:rgb(58, 58, 58);\n"
+        From_Cuentas.resize(709, 318)
+        From_Cuentas.setMinimumSize(QSize(709, 318))
+        From_Cuentas.setMaximumSize(QSize(709, 318))
+        From_Cuentas.setStyleSheet(u"background :rgb(68, 68, 68)rgb(44, 44, 44);\n"
 "color:white;")
         self.frame = QFrame(From_Cuentas)
         self.frame.setObjectName(u"frame")

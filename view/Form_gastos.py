@@ -20,7 +20,8 @@ class Ui_Form_gastos(object):
         Form_gastos.resize(484, 500)
         Form_gastos.setMinimumSize(QSize(484, 500))
         Form_gastos.setMaximumSize(QSize(484, 500))
-        Form_gastos.setStyleSheet(u"background:rgb(79, 79, 79);\n"
+        Form_gastos.setStyleSheet(u"\n"
+"background :rgb(68, 68, 68)rgb(44, 44, 44);\n"
 "color:white;")
         self.frame = QFrame(Form_gastos)
         self.frame.setObjectName(u"frame")
