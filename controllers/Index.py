@@ -33,6 +33,7 @@ class Index(QWidget,Ui_Form_Main):
 
         self.btn_save.clicked.connect(self.insert_shop)
         self.btn_actualizar.clicked.connect(lambda: self.table(select_shop()))
+        self.btn_Buscar_02_client.clicked.connect(self.buscar_dAnterior)
     #-----------------------------------
     #        seleccion de producto (calculo)
     #-----------------------------------
@@ -61,8 +62,6 @@ class Index(QWidget,Ui_Form_Main):
         from controllers.Cuentas import Cuenta
         windo_cuenta = Cuenta(self)
         windo_cuenta.show()
-    #-----------------------------------
-    #        funtionss cliente_cuenta
 
     #-----------------------------------
     #        funtionss seleccion de producto (cuent)
@@ -85,10 +84,26 @@ class Index(QWidget,Ui_Form_Main):
             producto_select = self.line_kg_pz.text()
             precio_product = self.line_precio.text()
             calculo = int(producto_select) * int(precio_product)
-            total_label = calculo
+            Total_producto = calculo
+            self.label_Total_producto.setText(str(Total_producto))
+            ant=self.labe_text
+            total_con_Anterior=ant + Total_producto
+            self.label_Total_con_anterior.setText(str(total_con_Anterior))
+    #-----------------------------------
+    #        funtionss insert shop
+    #-----------------------------------
+    def buscar_dAnterior(self):
+        n_cliente=self.line_nombre_cliente.text()
 
-            self.label_Total.setText(str(total_label))
-       
+        try:
+            d_anterior=select_one_account_name(n_cliente)
+            self.labe_text=int(d_anterior[0])
+            self.label_deuda_anterior.setText(str(self.labe_text))
+           
+        except :
+            pass 
+        
+            
     #-----------------------------------
     #        funtionss insert shop
     #-----------------------------------
@@ -145,6 +160,9 @@ class Index(QWidget,Ui_Form_Main):
         self.line_kg_pz.clear()
         self.line_precio.clear()
         self.line_recivo.clear()
+        #label's
+        self.label_deuda_anterior.setText(str("0"))
+
      #-----------------------------------
     #        funtionss table
     #-----------------------------------  
