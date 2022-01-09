@@ -376,6 +376,3 @@ def user_shop():
     finally:
         if conn:
             cur.close()
-
-n=user_shop()
-print(n)

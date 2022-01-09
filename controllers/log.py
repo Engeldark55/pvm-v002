@@ -2,6 +2,8 @@ from PySide2.QtWidgets import QWidget
 from view.From_login import Ui_Form
 #db
 from db.consultas import user_shop
+#NOTA: abeses no muestra las img por que es un error del path lo que hay que hacer es ir 
+#ala clase del ui conbertinada en py y en las dir de la img barrar un punto 
 class login(QWidget,Ui_Form):
     def __init__(self):
         super().__init__()
@@ -21,6 +23,8 @@ class login(QWidget,Ui_Form):
         if name == user_db[0] and passW == user_db[1]:
             self.open_log()
             self.label_ERROR.setText(" ")
+            self.line_name.clear()
+            self.line_password.clear()
             print(f"Bienbenido {name}")
             
         else:
