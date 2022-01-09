@@ -362,3 +362,20 @@ def delete_account():
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 #       log 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+def user_shop():
+    conn = create_conection()
+    data= f"""SELECT name,password FROM user_shop """
+    try:
+        cur = conn.cursor()
+        cur.execute(data)
+        user= cur.fetchone()
+        return user
+    except Error as e:
+          print(f"error eliminar cuenta... {e}")
+    finally:
+        if conn:
+            cur.close()
+
+n=user_shop()
+print(n)

@@ -58,7 +58,8 @@ class Ui_Form(object):
 "color:white")
         self.label_ERROR = QLabel(Form)
         self.label_ERROR.setObjectName(u"label_ERROR")
-        self.label_ERROR.setGeometry(QRect(80, 10, 47, 13))
+        self.label_ERROR.setGeometry(QRect(50, 10, 301, 20))
+        self.label_ERROR.setStyleSheet(u"color:red;")
 
         self.retranslateUi(Form)
 
@@ -77,6 +78,6 @@ class Ui_Form(object):
         self.btn_entrar.setWhatsThis(QCoreApplication.translate("Form", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-style:italic;\">Entrar!</span></p></body></html>", None))
 #endif // QT_CONFIG(whatsthis)
         self.btn_entrar.setText(QCoreApplication.translate("Form", u"Entrar", None))
-        self.label_ERROR.setText("")
+        self.label_ERROR.setText(QCoreApplication.translate("Form", u"<html><head/><body><p align=\"center\"><br/></p></body></html>", None))
     # retranslateUi
 

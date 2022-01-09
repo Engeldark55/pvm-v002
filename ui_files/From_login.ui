@@ -148,14 +148,17 @@ color:white</string>
   <widget class="QLabel" name="label_ERROR">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>50</x>
      <y>10</y>
-     <width>47</width>
-     <height>13</height>
+     <width>301</width>
+     <height>20</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color:red;</string>
+   </property>
    <property name="text">
-    <string/>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
