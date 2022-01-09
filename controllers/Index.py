@@ -1,18 +1,23 @@
 from PySide2.QtWidgets import QWidget,QTableWidgetItem
 from db.consultas import insert_venta
 from view.Main import Ui_Form_Main
-
+from PySide2.QtCore import Qt
 #db
 from db.consultas import insert_cuenta
 from db.consultas import select_shop
 from db.consultas import select_one_account_name,update_acconut
+#db busquedas
+from db.consultas import busqueda_by_cliente
+from db.consultas import busqueda_by_pro
+from db.consultas import busqueda_by_fecha
 
 import datetime
 
 class Index(QWidget,Ui_Form_Main):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,parent=None):
+        super().__init__(parent)
         self.setupUi(self)
+        self.setWindowFlag(Qt.Window)
     #-----------------------------------
     #   funciones ejecutadas por defecto 
     #-----------------------------------
@@ -34,6 +39,7 @@ class Index(QWidget,Ui_Form_Main):
         self.btn_save.clicked.connect(self.insert_shop)
         self.btn_actualizar.clicked.connect(lambda: self.table(select_shop()))
         self.btn_Buscar_02_client.clicked.connect(self.buscar_dAnterior)
+        self.btn_Buscar.clicked.connect(self.full_busqueda)
     #-----------------------------------
     #        seleccion de producto (calculo)
     #-----------------------------------
@@ -164,6 +170,36 @@ class Index(QWidget,Ui_Form_Main):
         self.label_deuda_anterior.setText(str("0"))
 
      #-----------------------------------
+    
+    #line_busqueda
+    def buscar_by_cliente(self,filtro):
+        data = busqueda_by_cliente(filtro)
+        self.table(data)
+    def buscar_by_pro(self,pro):
+        data =busqueda_by_pro(pro)
+        self.table(data)
+    def buscar_by_fecha(self,fecha):
+        data=busqueda_by_fecha(fecha)
+        self.table(data)
+
+    def full_busqueda(self):
+        opc_s=self.comboBox_filtro.currentText()
+        busqueda=self.line_buscar.text()
+
+        if opc_s == "":
+            print("seleccione opc")
+        else:
+            if busqueda == "":
+                print("escriba su busqueda")
+            else:
+                if opc_s == "cliente":
+                    self.buscar_by_cliente(busqueda)
+                elif  opc_s == "Tripa" or opc_s == "Corazon":
+                    self.buscar_by_pro(busqueda)
+                
+                elif  opc_s == "Fecha":
+                    self.buscar_by_fecha(busqueda)
+
     #        funtionss table
     #-----------------------------------  
     

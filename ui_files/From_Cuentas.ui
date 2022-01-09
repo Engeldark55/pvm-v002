@@ -200,42 +200,6 @@ color:white;</string>
    <property name="frameShadow">
     <enum>QFrame::Plain</enum>
    </property>
-   <widget class="QLineEdit" name="line_buscar">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>10</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="maxLength">
-     <number>10</number>
-    </property>
-    <property name="placeholderText">
-     <string>busqueda por nombre</string>
-    </property>
-    <property name="clearButtonEnabled">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_buscar">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>10</y>
-      <width>111</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:rgb(26, 193, 23);
-</string>
-    </property>
-    <property name="text">
-     <string>search</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">

@@ -99,6 +99,10 @@ class Ui_Form_gastos(object):
         self.btn_buscar.setGeometry(QRect(340, 10, 75, 23))
         self.btn_buscar.setStyleSheet(u"background:green;\n"
 "color:white;")
+        self.comboBox_filtro_2 = QComboBox(self.frame_3)
+        self.comboBox_filtro_2.setObjectName(u"comboBox_filtro_2")
+        self.comboBox_filtro_2.setGeometry(QRect(20, 10, 111, 22))
+        self.comboBox_filtro_2.setStyleSheet(u"color:white;")
 
         self.retranslateUi(Form_gastos)
 

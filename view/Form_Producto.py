@@ -72,6 +72,20 @@ class Ui_Form_Producto(object):
         self.tableWidget.setGeometry(QRect(250, 80, 381, 171))
         self.tableWidget.setStyleSheet(u"background:white;\n"
 "color:black;")
+        self.line_buscar = QLineEdit(Form_Producto)
+        self.line_buscar.setObjectName(u"line_buscar")
+        self.line_buscar.setGeometry(QRect(390, 50, 91, 20))
+        self.line_buscar.setMaxLength(10)
+        self.line_buscar.setClearButtonEnabled(True)
+        self.btn_buscar = QPushButton(Form_Producto)
+        self.btn_buscar.setObjectName(u"btn_buscar")
+        self.btn_buscar.setGeometry(QRect(500, 50, 111, 23))
+        self.btn_buscar.setStyleSheet(u"background:rgb(26, 193, 23);\n"
+"")
+        self.comboBox_filtro = QComboBox(Form_Producto)
+        self.comboBox_filtro.setObjectName(u"comboBox_filtro")
+        self.comboBox_filtro.setGeometry(QRect(260, 50, 111, 22))
+        self.comboBox_filtro.setStyleSheet(u"color:white;")
 
         self.retranslateUi(Form_Producto)
 
@@ -89,5 +103,7 @@ class Ui_Form_Producto(object):
         self.line_corazon.setPlaceholderText(QCoreApplication.translate("Form_Producto", u"      cantidad", None))
         self.btn_save.setText(QCoreApplication.translate("Form_Producto", u"Save", None))
         self.btn_actualizar.setText(QCoreApplication.translate("Form_Producto", u"update", None))
+        self.line_buscar.setPlaceholderText(QCoreApplication.translate("Form_Producto", u"busca...", None))
+        self.btn_buscar.setText(QCoreApplication.translate("Form_Producto", u"search", None))
     # retranslateUi
 

@@ -187,7 +187,156 @@ def select_one_account_name(name):
         if conn:
             conn.close()
 
+def busqueda_by_cliente(name):
+    conn = create_conection()
+    sql = f"""SELECT  Cliente,kg_pz,coste,producto,Total_venta,recibo,acuenta,fecha FROM Shop where Cliente = '{name}' """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
 
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+def busqueda_by_pro(name):
+    conn = create_conection()
+    sql = f"""SELECT  Cliente,kg_pz,coste,producto,Total_venta,recibo,acuenta,fecha FROM Shop where producto = '{name}' """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+def busqueda_by_fecha(fecha):
+    conn = create_conection()
+    sql = f"""SELECT  Cliente,kg_pz,coste,producto,Total_venta,recibo,acuenta,fecha FROM Shop where fecha like "%{fecha}%" """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+#produtos busqueda
+def busqueda_by_N_socio(s):
+    conn = create_conection()
+    sql = f"""SELECT n_socio,n_tri,n_cor,fecha FROM product WHERE n_socio = {s} """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+def busqueda_by_N_tripa(t):
+    conn = create_conection()
+    sql = f"""SELECT n_socio,n_tri,n_cor,fecha FROM product WHERE n_tri = {t} """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+def busqueda_by_N_cora(c):
+    conn = create_conection()
+    sql = f"""SELECT n_socio,n_tri,n_cor,fecha FROM product WHERE n_cor = {c} """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+def busqueda_by_fecha_pro(f):
+    conn = create_conection()
+    sql = f"""SELECT n_socio,n_tri,n_cor,fecha FROM product WHERE fecha like  "%{f}%" """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+
+#gas busqueda_by_fecha_pro
+def busqueda_by_name_gastos(c):
+    conn = create_conection()
+    sql = f"""SELECT name,cost,description,fecha FROM Expenses WHERE name ="{c}" """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+def busqueda_by_cost_gastos(c):
+    conn = create_conection()
+    sql = f"""SELECT name,cost,description,fecha FROM Expenses WHERE cost ="{c}" """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
+
+def busqueda_by_fecha_gasto(f):
+    conn = create_conection()
+    sql = f"""SELECT  name,cost,description,fecha FROM Expenses WHERE fecha like  "%{f}%" """
+    try:
+        cur = conn.cursor()
+        cur.execute(sql)
+        client_deuda = cur.fetchall()
+        return client_deuda
+
+    except Error as e:
+        print(f"error al buscar gastos... {e}")
+    finally:
+        if conn:
+            conn.close()
 
 # *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 #       delete 
@@ -209,3 +358,7 @@ def delete_account():
 
 
 
+
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+#       log 
+# *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*

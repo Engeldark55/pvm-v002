@@ -69,16 +69,6 @@ class Ui_From_Cuentas(object):
         self.frame_3.setGeometry(QRect(270, 70, 421, 41))
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Plain)
-        self.line_buscar = QLineEdit(self.frame_3)
-        self.line_buscar.setObjectName(u"line_buscar")
-        self.line_buscar.setGeometry(QRect(150, 10, 141, 20))
-        self.line_buscar.setMaxLength(10)
-        self.line_buscar.setClearButtonEnabled(True)
-        self.btn_buscar = QPushButton(self.frame_3)
-        self.btn_buscar.setObjectName(u"btn_buscar")
-        self.btn_buscar.setGeometry(QRect(300, 10, 111, 23))
-        self.btn_buscar.setStyleSheet(u"background:rgb(26, 193, 23);\n"
-"")
         self.tableWidget = QTableWidget(From_Cuentas)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(270, 120, 421, 192))
@@ -100,7 +90,5 @@ class Ui_From_Cuentas(object):
         self.line_abono.setPlaceholderText(QCoreApplication.translate("From_Cuentas", u"$000", None))
         self.btn_save.setText(QCoreApplication.translate("From_Cuentas", u"Save", None))
         self.btn_actualizar.setText(QCoreApplication.translate("From_Cuentas", u"update", None))
-        self.line_buscar.setPlaceholderText(QCoreApplication.translate("From_Cuentas", u"busqueda por nombre", None))
-        self.btn_buscar.setText(QCoreApplication.translate("From_Cuentas", u"search", None))
     # retranslateUi
 
